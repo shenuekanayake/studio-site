@@ -1,9 +1,6 @@
 .gitignore
 /server/node_modules
-/server/src/controller
-/server/src/services
 /server/src/socket.ts
-/server/src/index.ts
 /server/.env
 /server/upload
 /studio-client
