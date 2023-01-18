@@ -1,5 +1,8 @@
-
-/server
+.gitignore
+/server/node_modules
+/server/src/socket.ts
+/server/.env
+/server/upload
 /studio-client
 /.pnp
 
