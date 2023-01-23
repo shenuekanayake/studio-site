@@ -1,0 +1,38 @@
+<div class="container">
+    <!-- <div class="content">
+      <app-title title="Orders Summary" fontSize="1.6rem"></app-title>
+    </div> -->
+
+    <div class="order-table">
+        <table>
+            <tr>
+              <td colspan="5">
+                <h3>Orders List:</h3>
+              </td>
+            </tr>
+            <tr *ngFor="let item of orders">
+              <td>
+                <a routerLink="/order">
+                  <!-- <img [src]="item.food.image"/> -->
+                </a>
+              </td>
+              <td>
+                {{item.createdAt}}
+              </td>
+              <td>
+                {{item.name}}
+              </td>
+              <td>
+                Rs. {{item.totalPrice}}.00
+              </td>
+              <td>
+                {{item.status}}
+              </td>
+              <td class="btn-cont">
+                <button class="primary" (click)="onAccept(item)">Deliver Now</button>
+                <button class="danger" (click)="onRemove(item.id)">Remove</button>
+              </td>
+            </tr>
+          </table>
+    </div>
+</div>

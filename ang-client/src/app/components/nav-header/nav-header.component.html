@@ -1,0 +1,32 @@
+<header>
+    <div class="container">
+        <a routerLink="/" class="logo">KALE Restaurant</a>
+        <nav>
+            <ul>
+                <li>
+                    <a routerLink="/login" *ngIf="!user.token">LOGIN</a>
+                </li>
+                <li class="menu-container" *ngIf="user.token">
+                    <a routerLink="/profile">{{user.name}}</a>
+                    <div class="menu">
+                        <a routerLink="/orders" *ngIf="user.isAdmin">All Orders</a>
+                        <a routerLink="/my-orders" *ngIf="!user.isAdmin">My Orders</a>
+                        <a routerLink="/users">All Users</a>
+                        <a routerLink="/profile">Settings</a>
+                        <a (click)="onLogout()">Logout</a>
+                    </div>
+                </li>
+                <li *ngIf="user.token">
+                    <a routerLink="/cart-page">
+                        CART <span *ngIf="cartQuantity">{{cartQuantity}}</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/cart">
+                        MESSAGES <span>9+</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>

@@ -1,0 +1,53 @@
+<app-not-found
+    [visible]="!food"
+    resetLinkText="Go to Home"
+    notFoundMessage="Food Item Not Found"
+></app-not-found>
+<div *ngIf="food" class="container">
+            <img [src]="food.image" [alt]="food.name"/>
+            <div class="details">
+                <div class="header">
+                    <span class="name">
+                        {{food.name}}
+                    </span>
+                    <span class="favorite {{food.favorite?'':'not'}}">
+                        📞
+                    </span>
+                </div>
+                
+                <div class="rating">
+                    <star-rating
+                    [value]="food.stars"
+                    [totalstars]="rate"
+                    checkedcolor="red"
+                    uncheckedcolor="black"
+                    size="25px"
+                    [readonly]="true"></star-rating> <span >({{raters}})</span>
+                    
+                </div>
+                <div class="origins">
+                    <span *ngFor="let item of food.origins">
+                        {{item}}
+                    </span>
+                </div>
+                <div class="tags">
+                    <a *ngFor="let tag of food.tags" routerLink="/tag/{{tag}}">
+                        {{tag}}
+                    </a>
+                </div>
+                <div class="cooktime">
+                    <span>Time to cook about <strong>{{food.cooktime}}</strong></span>
+                </div>
+                <div class="price">
+                    {{food.price | currency}}
+                </div>
+                <button (click)="addToCart()">Add to Cart</button>
+                <hr>
+                <form [formGroup]="form">
+                    <div class="star-rate">
+                        <ngx-star-rating  formControlName="rating1" [id]="'rating'" [disabled]="false"></ngx-star-rating>
+                        <button class="success" (click)="addRate(food.id, form.value.rating1)">Rate this Item</button>
+                    </div>
+                </form>
+            </div>
+</div>

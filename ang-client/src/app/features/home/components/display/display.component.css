@@ -1,0 +1,17 @@
+.slicica {
+    max-width: 250px!important;
+    max-height: 160px!important;
+}
+
+.example-card {
+    cursor: pointer;
+    height: 220px;
+    width: 280px;
+    display: inline-block;
+    margin: 5px 5px 5px 5px;
+}
+
+.obuhvat {
+    width: 280px;
+    height: 320px;
+}

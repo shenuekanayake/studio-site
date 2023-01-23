@@ -1,0 +1,150 @@
+<div class="w3-content w3-padding-large" style="max-width:1100px;margin-top:40px;margin-bottom:80px;" id="top">
+    <div class="w3-center w3-padding-32">
+        <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Kreiranje restorana</span>
+      </div>
+<div class="row">
+  <div class="column">
+
+      <mat-card style="background-color: rgb(208, 211, 208)">
+          <h3 class="w3-center">Lokacije</h3>
+          <mat-card-content>
+        <form [formGroup]="formLokacija" #formControlLok="ngForm">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Ulica</mat-label>
+                  <input formControlName="ulica" matInput type="text" placeholder="Bulevar Oslobodjenja" />
+                  <mat-error *ngIf="formLokacija.controls.ulica.errors?.required">
+                      Potrebno je uneti ulicu.
+                  </mat-error>
+                  <mat-error *ngIf="
+                  !formLokacija.controls.ulica.errors?.required &&
+                  formLokacija.controls.ulica.errors?.minlength
+                ">
+                      Unesite validnu ulicu.
+                  </mat-error>
+              </mat-form-field><br/>
+              <mat-form-field class="example-full-width">
+                  <mat-label>Broj zgrade</mat-label>
+                  <input formControlName="broj" matInput type="text" placeholder="bb" />
+                  <mat-error *ngIf="formLokacija.controls.broj.errors?.required">
+                      Potrebno je uneti broj zgrade.
+                  </mat-error>
+                  <mat-error *ngIf="
+                  !formLokacija.controls.broj.errors?.required &&
+                  formLokacija.controls.broj.errors?.minlength
+                ">
+                      Unesite validan broj.
+                  </mat-error>
+              </mat-form-field><br/>
+              <mat-form-field class="example-full-width">
+                  <mat-label>Grad</mat-label>
+                  <input formControlName="grad" matInput type="text" placeholder="Novi Sad" />
+                  <mat-error *ngIf="formLokacija.controls.grad.errors?.required">
+                      Potrebno je uneti grad.
+                  </mat-error>
+                  <mat-error *ngIf="
+                  !formLokacija.controls.grad.errors?.required &&
+                  formLokacija.controls.grad.errors?.minlength
+                ">
+                      Unesite validan grad.
+                  </mat-error>
+              </mat-form-field><br/>
+              <mat-form-field class="example-full-width">
+                  <mat-label>Postanski broj</mat-label>
+                  <input formControlName="pBroj" matInput type="text" placeholder="21000" />
+                  <mat-error *ngIf="formLokacija.controls.pBroj.errors?.required">
+                      Potrebno je uneti postanski broj.
+                  </mat-error>
+                  <mat-error *ngIf="
+                  !formLokacija.controls.pBroj.errors?.required &&
+                  formLokacija.controls.pBroj.errors?.minlength
+                ">
+                      Unesite validan postanski broj.
+                  </mat-error>
+              </mat-form-field><br/>
+
+              <mat-form-field class="example-full-width">
+                <mat-label>Latitude</mat-label>
+                <input readonly formControlName="latitude" matInput type="text" placeholder="Latitude" />
+            </mat-form-field>
+
+              <mat-form-field class="example-full-width">
+                <mat-label>Logitude</mat-label>
+                <input readonly formControlName="longitude" matInput type="text" placeholder="Longitude" />
+            </mat-form-field>
+
+
+
+            </form>
+          </mat-card-content>
+          <mat-card-actions class="w3-center">
+            <button mat-raised-button [type]="onSubmit" color="primary" [disabled]="!formControlLok.valid" (click)="dodajLokaciju()">Dodaj</button>
+          </mat-card-actions>
+
+          <section style="padding: 10px;" class="w3-center example-section">
+              <p *ngFor="let lok of lokacije" class="example-margin w3-margin">{{lok.ulica + ' ' + lok.broj + ', ' + lok.grad + ' ' + lok.postanskiBroj }}</p>
+              <p *ngIf="lokacije.length == 0" class="example-margin w3-margin">Unete lokacije će se prikazati ovde</p>
+          </section>
+        </mat-card>
+
+
+  </div>
+
+  <div class="column">
+
+      <mat-card style="background-color: rgb(208, 211, 208)">
+          <h3 class="w3-center">Detalji o restoranu</h3>
+          <mat-card-content>
+            <form [formGroup]="form" #formControl="ngForm">
+                <mat-form-field >
+                    <input matInput formControlName="nazivRestorana" placeholder="Naziv restorana" name="naziv" required>
+                  </mat-form-field>
+                <mat-form-field >
+                    <input matInput formControlName="opisRestorana" placeholder="Opis restorana" name="opis" required>
+                  </mat-form-field>
+                <mat-form-field >
+                    <input matInput formControlName="pibRestorana" placeholder="PIB restorana" name="pib" required>
+                  </mat-form-field>
+                <mat-form-field >
+                    <input matInput formControlName="telefonRestorana" placeholder="Telefon restorana" name="telefon" required>
+                  </mat-form-field>
+                <mat-form-field >
+                    <input matInput formControlName="slikaRestorana" placeholder="URL slike restorana" name="slika" required>
+                  </mat-form-field>
+                  <div class="w3-center" *ngFor="let tipDat of tipoviDatuma">
+                    <p style="margin-bottom: 5pt;">{{tipDat.opisTipaDatuma}}</p><p style="display: inline; margin-left: 2pt; margin-right: 2pt;">Od</p>
+                    <input type="time" id="{{'start'+tipDat.idTipaDatuma}}" name="start"><p style="display: inline; margin-left: 2pt; margin-right: 2pt;">Do</p>
+                    <input style="margin-bottom: 5pt" type="time" id="{{'end'+tipDat.idTipaDatuma}}" name="end">
+                  </div>
+                  <!--
+                  <div class="w3-center">
+                    <p style="margin-bottom: 5pt;">Radni dan</p>
+                    <input type="time" id="startTimeRD" name="startTimeRD">
+                    <input style="margin-bottom: 5pt" type="time" id="endTimeRD" name="endTimeRD">
+
+                    <p style="margin-bottom: 5pt;">Subota</p>
+                    <input type="time" id="startTimeS" name="startTimeS">
+                    <input style="margin-bottom: 5pt;" type="time" id="endTimeS" name="endTimeS">
+
+                    <p style="margin-bottom: 5pt;">Nedelja</p>
+                    <input type="time" id="startTimeN" name="startTimeN">
+                    <input  style="margin-bottom: 5pt;" type="time" id="endTimeN" name="endTimeN">
+                  </div>
+                  -->
+                <h3 class="w3-center">Odaberite kojih je tipova restoran</h3>
+                  <section style="padding: 10px;" class="example-section">
+                      <mat-checkbox #checkboxes *ngFor="let tip of tipoviRestorana" class="example-margin w3-margin" (change)="promena(tip)">{{tip.opisTipaRestorana}}</mat-checkbox>
+                  </section>
+
+            </form>
+
+          </mat-card-content>
+          <mat-card-actions class="w3-center">
+            <button mat-raised-button [type]="onSubmit" color="primary" [disabled]="!formControl.valid" (click)="onSubmit()">Kreiraj</button>
+          </mat-card-actions>
+        </mat-card>
+
+  </div>
+</div>
+</div>
+<h2 style="text-align: center;">Selektujte koordinate lokacije na mapi</h2>
+<app-click-map (promena)="kordinate($event)" lat="45.2566559" lng="19.844614" width="100%" height="500px"></app-click-map>

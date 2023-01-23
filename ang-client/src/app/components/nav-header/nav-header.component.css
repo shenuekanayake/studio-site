@@ -1,0 +1,75 @@
+header {
+    position: relative;
+    background-color: brown;
+    padding: 0;
+    border-bottom: 1px solid  #f82424;
+}
+
+a {
+    color: #ffebeb;
+}
+
+a:hover {
+    color: #df8282;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.5rem;
+    padding: 1rem;
+}
+
+ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+}
+
+ul a {
+    padding: 1rem;
+    display: inline-block;
+
+}
+
+a span {
+    background-color: #f82424;
+    color: #ffebeb;
+    padding: 0.1rem 0.45rem;
+    border-radius: 100rem;
+    font-size: 0.9rem;
+}
+
+.menu-container {
+    position: relative;
+    transition: .6s;
+    
+}
+
+.menu {
+    position: absolute;
+    top:4.3rem;
+    z-index: 1;
+    background-color: #f82424;
+    display: none;
+    transition: .6s;
+}
+
+.menu a {
+    width: 100%;
+    min-height: .8rem;
+}
+
+.menu-container .menu {
+    transition: .6s;
+
+}
+
+.menu-container:hover .menu {
+    display: block;
+
+}
